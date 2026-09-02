@@ -25,13 +25,13 @@ public:
         int high=arr.size()-1;
         int low=0;
         while(low<high){
-            int mid=low+(low+high)/2;
+            int mid=low+(high-low)/2;
             if(arr[mid]>arr[high]){
                 low=mid+1;
             }else{
              high=mid;
             }
         }
-        return low;
+        return arr[low];
     }
 };
