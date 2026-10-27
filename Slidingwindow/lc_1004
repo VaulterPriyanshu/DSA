@@ -1,0 +1,49 @@
+/*
+Problem: Max Consecutive Ones III
+Platform: LeetCode
+
+Problem Statement:
+Given a binary array nums and an integer k, return the
+maximum number of consecutive 1s in the array if you can
+flip at most k zeros to 1s.
+
+Approach:
+- Use the sliding window technique with two pointers, left
+  and right.
+- Expand the window by moving the right pointer.
+- Count the number of zeros in the current window.
+- If the number of zeros exceeds k, move the left pointer
+  forward until the number of zeros becomes at most k.
+- Update the maximum window length at each step.
+- Return the maximum length found.
+
+Time Complexity: O(n)
+where n = length of the array
+
+Space Complexity: O(1)
+*/
+#include <bits/stdc++.h>
+using namespace std;
+class Solution {
+public:
+    int longestOnes(vector<int>& nums, int k) {
+        int r=0;
+        int l=0,z=0;
+        int ans=0;
+        int n=nums.size();
+        for(r=0;r<n;r++){
+            if(nums[r]==0){
+                z++;
+            }
+            if(z>k){
+                 if(nums[l]==0){
+                    z--;
+                 }
+            
+            l++;
+            }
+            ans=max(ans,r-l+1);
+        }
+        return ans;
+    }
+};
